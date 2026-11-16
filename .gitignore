@@ -1,0 +1,12 @@
+# 建置成品與測試截圖（太大，可重建）
+dist/
+qa/
+release/
+node_modules/
+# 本機設定與部署（含私人主機資訊）
+.claude/
+deploy.sh
+.DS_Store
+# 工作紀錄（含私人主機與網址）
+BRIEF.md
+progress.md

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>戰爭迷霧 — 專案管理即時戰略</title>
+<meta name="description" content="星海爭霸風格的專案管理即時戰略：先暫停教學、一次學一個動作，玩懂供給卡住、技術債、三層視野與信任。">
+<link rel="alternate" hreflang="zh-Hant" href="https://www.toolhubmaster.com/tools/a92c8cad-e1f6-4ffe-8fc8-7a3c5a63743b/index.html?lang=zh">
+<link rel="alternate" hreflang="en" href="https://www.toolhubmaster.com/tools/a92c8cad-e1f6-4ffe-8fc8-7a3c5a63743b/index.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://www.toolhubmaster.com/tools/a92c8cad-e1f6-4ffe-8fc8-7a3c5a63743b/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fog of War — a project-management RTS">
+<meta property="og:description" content="A StarCraft-style strategy game for learning project management. Paused step-by-step tutorial, then play through Supply Block, tech debt, the four views (Boss / Manager / PM / Engineer), trust, and The Mythical Man-Month. In English and Traditional Chinese.">
+<meta property="og:url" content="https://www.toolhubmaster.com/tools/a92c8cad-e1f6-4ffe-8fc8-7a3c5a63743b/index.html?lang=en">
+<meta property="og:image" content="https://www.toolhubmaster.com/tools/a92c8cad-e1f6-4ffe-8fc8-7a3c5a63743b/cover-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fog of War — a project-management RTS">
+<meta name="twitter:description" content="Four people watch the same battle — each sees a different screen. A StarCraft-style game for learning project management: Supply Block, tech debt, trust, and The Mythical Man-Month.">
+<meta name="twitter:image" content="https://www.toolhubmaster.com/tools/a92c8cad-e1f6-4ffe-8fc8-7a3c5a63743b/cover-en.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1420'/%3E%3Cpath d='M16 5l10 5.5v11L16 27 6 21.5v-11z' fill='none' stroke='%233ee0a1' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23f5b942'/%3E%3C/svg%3E">
+<style>
+/*__CSS__*/
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="stage"></canvas>
+
+  <div id="hud" class="off">
+    <div id="tl" class="panel">
+      <div id="mTitle"></div>
+      <div id="mGoal"></div>
+      <div id="mSub"></div>
+    </div>
+    <div id="tc"><span id="clock"></span><span id="pausedTag"></span></div>
+    <div id="tr">
+      <div class="pill" id="pOre" title="預算 Budget"><i class="g ore"></i><b>0</b><small></small></div>
+      <div class="pill hide" id="pSup" title="管理頻寬 Bandwidth（Supply）"><i class="g sup"></i><b>0/0</b><small></small></div>
+      <div class="pill hide" id="pDebt" title="技術債 Tech Debt"><i class="g debt"></i><b>?</b><small></small></div>
+      <div class="pill hide" id="pTrust" title="信任 Trust（老闆給你的自由度）"><i class="g trust"></i><b>70</b><small></small></div>
+      <button class="pill hide" id="bTech" title="研發面板 (T)"><i class="g tech"></i><b>研發</b><small></small></button>
+      <button class="ibtn" id="bMute" title="音效 (M)">♪</button>
+      <button class="ibtn" id="bSpeed" title="加速 (＋)">×1</button>
+      <button class="ibtn" id="bPause" title="暫停 (P)">❚❚</button>
+      <button class="ibtn" id="bMenu" title="選單 (Esc)">≡</button>
+    </div>
+    <div id="views" class="hide">
+      <button data-role="orbit"><i>3</i>老闆<span class="en"> Orbit</span></button>
+      <button data-role="bridge"><i>2</i>主管<span class="en"> Bridge</span></button>
+      <button data-role="ground" class="on"><i>1</i>PM<span class="en"> Ground</span></button>
+      <button data-role="engineer" class="eng"><i>4</i>工程師<span class="en"> Engineer</span></button>
+    </div>
+    <div id="tech" class="panel hide"></div>
+    <div id="feed"></div>
+    <button id="rep" class="hide"></button>
+    <div id="layer" class="panel hide"></div>
+    <div id="bl" class="hide"><canvas id="mm" width="224" height="116"></canvas></div>
+    <div id="bc" class="panel hide"></div>
+    <div id="br" class="hide"></div>
+    <button id="idle" class="hide"></button>
+    <button id="home" class="hide" title="回基地 (H)">⌂</button>
+  </div>
+
+  <div id="dragbox"></div>
+  <div id="toast"></div>
+
+  <div id="coach" class="off">
+    <div id="spot"></div>
+    <div id="ptr"></div>
+    <div id="bubble">
+      <div id="cStep"></div>
+      <div id="cMsg"></div>
+      <div id="cSub"></div>
+      <div id="cAct"></div>
+    </div>
+  </div>
+
+  <div id="modal" class="off"></div>
+</div>
+<script>
+/*__JS__*/
+</script>
+</body>
+</html>
